@@ -23,7 +23,7 @@ public class PlayState extends State {
         for (int i = 0; i < 2; i++)
             grounds.add(new Ground(i * (int)camera.viewportWidth, 0, "ground.jpg", camera.viewportWidth, SCREEN_HEIGHT));
 
-        dino = new Dino(50, (int)camera.viewportHeight/15);
+        dino = new Dino(50, (int)camera.viewportHeight/15, camera.viewportHeight/15);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class PlayState extends State {
     protected void update(float deltaTime) {
         handleInput();
 
-        dino.update(deltaTime, camera.viewportHeight/15, false);
+        dino.update(deltaTime, false);
         camera.position.set(dino.getPosition().x + 430, camera.viewportHeight/2, 0);
 
         for (Ground ground : grounds)
