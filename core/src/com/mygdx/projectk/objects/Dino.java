@@ -23,7 +23,7 @@ public class Dino {
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
 
-        dino = new Texture("square.png");
+        dino = new Texture("dino.png");
         dino.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         hitbox = new Rectangle(x, y, WIDTH, HEIGHT);
