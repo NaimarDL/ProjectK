@@ -28,7 +28,7 @@ public class PlayState extends State {
 
     @Override
     protected void handleInput() {
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.justTouched()) {
             dino.jump();
         }
     }
@@ -39,8 +39,6 @@ public class PlayState extends State {
 
         dino.update(deltaTime, camera.viewportHeight/15, false);
         camera.position.set(dino.getPosition().x + 430, camera.viewportHeight/2, 0);
-
-        System.out.println(camera.position.x);
 
         for (Ground ground : grounds)
             ground.update(camera.position.x - camera.viewportWidth / 2);

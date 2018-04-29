@@ -5,8 +5,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Dino {
-    private int speedx; // 300 to start
-    private static final byte GRAVITY = -49;
+    private int speedx; // 100 to start
+    private boolean hasJumped = false;
+    private static final byte GRAVITY = -25;
     private static final byte WIDTH = 50;
     private static final byte HEIGHT = 50;
     private static final byte[] dimensions = {WIDTH, HEIGHT};
@@ -31,9 +32,14 @@ public class Dino {
     }
 
     public void update(float deltaTime, float groundEdge, boolean collided) {
-        if (position.y > groundEdge) {
+        if (position.y > groundEdge || hasJumped) {
             velocity.add(0, GRAVITY);
             velocity.scl(deltaTime);
+            hasJumped = false;
+        }
+        else {
+            velocity.y = 0;
+            position.y = groundEdge;
         }
 
         if (!collided)
@@ -41,14 +47,15 @@ public class Dino {
 
         velocity.scl(1 / deltaTime);
 
-        hitbox.setPosition(position.x, position.y);
 
-//        System.out.println(deltaTime);
-//        position.add(speedx * deltaTime, 0);
+        hitbox.setPosition(position.x, position.y);
+        System.out.println(position.y);
+
     }
 
     public void jump () {
-        velocity.y = 100;
+        hasJumped = true;
+        velocity.y = 500;
     }
 
     public Texture getTexture () {
